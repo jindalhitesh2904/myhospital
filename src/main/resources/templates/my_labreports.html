@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>My Lab Reports</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/tables.css}">
+</head>
+<body style="background-image:url('https://thumbs.dreamstime.com/b/healthcare-technol?medical-network-hospital-background-162019727.jpg');background-repeat: no-repeat;background-attachment: fixed;
+  background-size: cover;">
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#" style="margin-left: 20px">Kovid Hospitals</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About Us</a>
+            </li>
+            <li style="width: 1070px"></li>
+            <li class="nav-item" >
+                <a class="nav-link" sec:authentication="principal.username" href="#">User</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/logout}">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div style="margin-top:40px ">
+    <div>
+        <h3 th:text="${patient.user.first_name}+' '+${patient.user.last_name}" class="display-4"></h3>
+    </div>
+</div>
+<div style="margin-top:10px ">
+    <div>
+        <h3 th:text="${patient.user.age}+'yrs                      '+${patient.user.gender}" class="display-4"></h3>
+    </div>
+</div>
+<div style="margin-top:10px "></div>
+<h2 class="display-6">Contact Info:</h2>
+<div style="margin-top:10px ">
+    <div>
+        <h3 th:text="'Email: '+${patient.user.Email}" class="display-9"></h3>
+    </div>
+</div>
+<div style="margin-top:10px ">
+    <div>
+        <h3 th:text="'Mobile: '+${patient.user.mobile_no}" class="display-9"></h3>
+    </div>
+</div>
+
+<h2 style="text-align:center">Lab Reports</h2>
+<div style="margin-top:2px; margin-bottom:40px;margin-left:340px;margin-right:340px">
+    <div class="table2">
+        <div class="table-header2">
+            <div class="header__item"><a id="p" class="filter__link" href="#">Test Name</a></div>
+            <div class="header__item"><a id="q" class="filter__link" href="#">Doctor</a></div>
+            <div class="header__item"><a id="r" class="filter__link" href="#">Date</a></div>
+            <div class="header__item"><a id="s" class="filter__link" href="#">Findings</a></div>
+        </div>
+        <div class="table-content1">
+            <div class="table-row1" th:each="labReport:${patient.laboratory_reports}">
+                <div class="table-data2" th:text="${labReport.name}"></div>
+                <div class="table-data2" th:text="'Dr.'+${labReport.doctor.user.first_name}+' '+${labReport.doctor.user.last_name}"></div>
+                <div class="table-data2" th:text="${labReport.date}"></div>
+                <div class="table-data2"  th:text="${labReport.findings}"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script th:src="@{/js/tables.js}"></script>
+</body>
+</html>

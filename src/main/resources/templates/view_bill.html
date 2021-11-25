@@ -1,0 +1,76 @@
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Invoice</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="license" href="https://www.opensource.org/licenses/mit-license/">
+    <script src="script.js"></script>
+</head>
+<body>
+<header>
+    <h1>Invoice</h1>
+    <address>
+        <p th:text="${bill.patient.user.first_name}+' '+${bill.patient.user.last_name}"></p>
+        <p th:text="${bill.patient.user.email}"></p>
+        <p th:text="${bill.patient.user.mobile_no}"></p>
+    </address>
+    <span><img alt="" src="http://www.jonathantneal.com/examples/invoice/logo.png"><input type="file" accept="image/*"></span>
+</header>
+<article>
+    <h1>Recipient</h1>
+    <address  >
+        <p>Kovid Hospital<br>c/o Hitesh Jindal</p>
+    </address>
+    <table class="meta">
+        <tr>
+            <th><span  >Invoice #</span></th>
+            <td><span th:text="${bill.id}"  ></span></td>
+        </tr>
+        <tr>
+            <th><span  >Date</span></th>
+            <td><span th:text="${bill.bill_date}"></span></td>
+        </tr>
+        <tr>
+            <th><span  >Amount Due</span></th>
+            <td><span th:text="(${bill.amount}-${bill.amount_paid})" id="prefix"></span><span></span></td>
+        </tr>
+    </table>
+    <table class="inventory">
+        <thead>
+        <tr>
+            <th><span>Item Id</span></th>
+            <th><span>Description</span></th>
+            <th><span>Price</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="charge:${bill.charges}">
+            <td><span th:text="${charge.id}"></span></td>
+            <td><span   th:text="${charge.name}"></span></td>
+            <td><span data-prefix>Rs.</span><span th:text="${charge.cost}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+    <table class="balance">
+        <tr>
+            <th><span  >Total</span></th>
+            <td><span data-prefix>Rs</span><span th:text="${bill.amount}"></span></td>
+        </tr>
+        <tr>
+            <th><span  >Amount Paid</span></th>
+            <td><span data-prefix>Rs</span><span th:text="${bill.amount_paid}"></span></td>
+        </tr>
+        <tr>
+            <th><span  >Balance Due</span></th>
+            <td><span data-prefix>Rs</span><span th:text="(${bill.amount}-${bill.amount_paid})"></span></td>
+        </tr>
+    </table>
+</article>
+<aside>
+    <h1><span  >Additional Notes</span></h1>
+    <div  >
+        <p>A finance charge of 1.5% will be made on unpaid balances after 30 days.</p>
+    </div>
+</aside>
+</body>
+</html>
