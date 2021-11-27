@@ -26,10 +26,10 @@ public class StarterClass implements CommandLineRunner {
 //        Admin admin=new Admin("Hitesh","Jindal","admin@gmail.com",securityConfiguration.passwordEncoder().encode("0000"),"+919999999999","M",20, Arrays.asList(role));
 //        Admin admin1=adminRepository.save(admin);
 
-//        Role role=new Role("ADMIN");
-//        User user=new User("Hitesh","Jindal","admin@gmail.com",securityConfiguration.passwordEncoder().encode("0000"),"+919999999999","M",20, Arrays.asList(role));
-//        Admin admin=new Admin(user);
-//        Admin admin1=adminRepository.save(admin);
+        Role role=new Role("ADMIN");
+        User user=new User("Hitesh","Jindal","admin@gmail.com",securityConfiguration.passwordEncoder().encode("0000"),"+919999999999","M",20, Arrays.asList(role));
+        Admin admin=new Admin(user);
+        Admin admin1=adminRepository.save(admin);
 //        logger.info("Application started with command-line arguments: {} . \n To kill this application, press Ctrl + C.", Arrays.toString(args));
         System.out.println("admin created");
     }
