@@ -14,7 +14,7 @@
     <name>myhospital</name>
     <description>myhospital</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>8</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -70,6 +70,7 @@
             <version>42.3.1</version>
             <scope>compile</scope>
         </dependency>
+
     </dependencies>
 
     <build>

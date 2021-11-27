@@ -1,7 +1,6 @@
 package com.example.myhospital.repository;
 
 import com.example.myhospital.model.Doctor;
-import jdk.dynalink.linker.LinkerServices;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
